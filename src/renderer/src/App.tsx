@@ -39,7 +39,14 @@ import { useState } from 'react';
 function App(): React.JSX.Element {
   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping') //for some reason we need this so will learn it and get back to you. 
 
+
+  const [set_name, set_set_name] = useState('');
   const [tracking_id, set_tracking_id] = useState('');
+
+  const [retailer, set_retailer] = useState('Pokémon Center');
+
+
+
   
 
   return(
@@ -50,13 +57,31 @@ function App(): React.JSX.Element {
     </div>
 
 
-    <div>
-      <label> Please Enter Tracking ID -- </label>
-      <input value={tracking_id}
-      onChange={(event) => set_tracking_id(event.target.value)}    
-      placeholder='Enter Tracking ID (UPS/FedEx/USPS'
-      /> 
-    </div>
+    <section className='All Information'> 
+      <div>
+        <label> Please Enter Set Name  -- </label>
+        <input value={set_name}
+        onChange={(event) => set_set_name(event.target.value)}    
+        placeholder='Enter Tracking ID (UPS/FedEx/USPS'
+        /> 
+      </div>
+
+      <div>
+          <label> Select Retailer </label>
+          <select value={retailer}
+          onChange={(event) => set_retailer(event.target.value)}
+          >
+           <option value='Pokémon Center'> Pokémon Center </option>
+           <option value = 'Target'>  Target </option>
+           <option value = 'Walmart'> Walmart </option>
+           <option value = 'N/A'>  N/A </option>
+          </select>
+
+          
+
+      </div>
+
+    </section>
         
     
     </>
